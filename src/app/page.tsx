@@ -1,3 +1,16 @@
+//import MapComponent from "./_components/map-component";
+
+import dynamic from "next/dynamic";
+//import MapClient from "./_components/map-client";
+
 export default function Home() {
-  return <main></main>;
+  const MapClient = dynamic(() => import("./_components/map-client"), {
+    ssr: false,
+  });
+  return (
+    <main className="h-full">
+      <h1>MAP</h1>
+      <MapClient />
+    </main>
+  );
 }
