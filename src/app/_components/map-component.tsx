@@ -2,7 +2,14 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
 import "leaflet-defaulticon-compatibility";
 import { useGeolocated } from "react-geolocated";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  useMapEvents,
+} from "react-leaflet";
 import { useEffect, useState } from "react";
 import LocationCard from "./location-card";
 import { getAllLocationsAction } from "../actions";
@@ -22,6 +29,14 @@ export default function MapComponent() {
     },
     userDecisionTimeout: 5000,
   });
+  function GetCoords() {
+    useMapEvents({
+      click(e) {
+        console.log(e);
+      },
+    });
+    return null;
+  }
 
   return (
     <div className="h-full">
@@ -32,6 +47,8 @@ export default function MapComponent() {
         scrollWheelZoom={false}
         style={{ height: "100%", width: "100%" }}
       >
+        <GetCoords />
+
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
