@@ -2,14 +2,29 @@
 
 import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import { postLocationAction } from "../actions";
+import { useGeolocated } from "react-geolocated";
 
 export default function AddLocationPage() {
-  const { handleSubmit, register } = useForm<{
+  const { coords, isGeolocationAvailable, isGeolocationEnabled } =
+    useGeolocated();
+  useGeolocated({
+    positionOptions: {
+      enableHighAccuracy: true,
+    },
+    userDecisionTimeout: 5000,
+  });
+
+  const { handleSubmit, register, setValue } = useForm<{
     name: string;
     x: number;
     y: number;
     utils: string[];
-  }>();
+  }>({
+    defaultValues: {
+      x: coords?.longitude,
+      y: coords?.latitude,
+    },
+  });
 
   const onSubmit: SubmitHandler<{
     name: string;
@@ -28,9 +43,18 @@ export default function AddLocationPage() {
     "Parking",
     "Campfire",
   ];
+
+  const getUsersLocation = () => {
+    if (coords) {
+      setValue("x", coords?.longitude);
+      setValue("y", coords?.latitude);
+    } else {
+      console.log("Unabled to fetch information");
+    }
+  };
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="x">Name:</label>
         <input
           className="bg-blue-200"
@@ -54,6 +78,7 @@ export default function AddLocationPage() {
           step="any"
           {...register("y")}
         />
+        <button onClick={getUsersLocation}>Use your location</button>
         {utils.map((u, i) => {
           return (
             <div key={i}>
