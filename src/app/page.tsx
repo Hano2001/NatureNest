@@ -1,5 +1,3 @@
-//import MapComponent from "./_components/map-component";
-
 import dynamic from "next/dynamic";
 
 export default function Home() {
@@ -8,7 +6,6 @@ export default function Home() {
   });
   return (
     <main className="h-full">
-      <h1>MAP</h1>
       <MapClient />
     </main>
   );
