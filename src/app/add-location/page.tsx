@@ -1,18 +1,23 @@
 "use client";
 
 import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
+import { postLocationAction } from "../actions";
 
 export default function AddLocationPage() {
   const { handleSubmit, register } = useForm<{
-    x: string;
-    y: string;
+    name: string;
+    x: number;
+    y: number;
     utils: string[];
   }>();
 
-  const onSubmit: SubmitHandler<{ x: string; y: string; utils: string[] }> = (
-    data,
-  ) => {
-    console.log({ data });
+  const onSubmit: SubmitHandler<{
+    name: string;
+    x: number;
+    y: number;
+    utils: string[];
+  }> = (data) => {
+    postLocationAction(data);
   };
 
   const utils = [
@@ -26,10 +31,29 @@ export default function AddLocationPage() {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="x">Longitude</label>
-        <input className="bg-blue-200" type="text" id="x" {...register("x")} />
-        <label htmlFor="y">Latitude</label>
-        <input className="bg-blue-200" type="text" id="y" {...register("y")} />
+        <label htmlFor="x">Name:</label>
+        <input
+          className="bg-blue-200"
+          type="text"
+          id="name"
+          {...register("name")}
+        />
+        <label htmlFor="x">Longitude:</label>
+        <input
+          className="bg-blue-200"
+          type="number"
+          id="x"
+          step="any"
+          {...register("x")}
+        />
+        <label htmlFor="y">Latitude:</label>
+        <input
+          className="bg-blue-200"
+          type="number"
+          id="y"
+          step="any"
+          {...register("y")}
+        />
         {utils.map((u, i) => {
           return (
             <div key={i}>
