@@ -18,8 +18,9 @@ import { Location } from "../types";
 export default function MapComponent() {
   const [locations, setLocations] = useState<Location[]>([]);
   useEffect(() => {
-    const result = getAllLocationsAction();
-    setLocations(result);
+    getAllLocationsAction().then((res) => {
+      setLocations(res);
+    });
   }, []);
   const { coords, isGeolocationAvailable, isGeolocationEnabled } =
     useGeolocated();
@@ -37,6 +38,7 @@ export default function MapComponent() {
     });
     return null;
   }
+  locations.forEach((l) => {});
 
   return (
     <div className="h-full">
@@ -55,7 +57,10 @@ export default function MapComponent() {
         />
         {locations.map((l, i) => {
           return (
-            <Marker key={i} position={[l.x, l.y]}>
+            <Marker
+              key={i}
+              position={[parseFloat(l.longitude), parseFloat(l.latitude)]}
+            >
               <Popup>
                 <LocationCard location={l} />
               </Popup>

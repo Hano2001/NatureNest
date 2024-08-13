@@ -16,20 +16,17 @@ export default function AddLocationPage() {
 
   const { handleSubmit, register, setValue } = useForm<{
     name: string;
-    x: number;
-    y: number;
+    latitude: string;
+    longitude: string;
+    description: string;
     utils: string[];
-  }>({
-    defaultValues: {
-      x: coords?.longitude,
-      y: coords?.latitude,
-    },
-  });
+  }>({});
 
   const onSubmit: SubmitHandler<{
     name: string;
-    x: number;
-    y: number;
+    latitude: string;
+    longitude: string;
+    description: string;
     utils: string[];
   }> = (data) => {
     postLocationAction(data);
@@ -46,8 +43,8 @@ export default function AddLocationPage() {
 
   const getUsersLocation = () => {
     if (coords) {
-      setValue("x", coords?.longitude);
-      setValue("y", coords?.latitude);
+      setValue("latitude", (coords?.longitude).toString());
+      setValue("longitude", (coords?.latitude).toString());
     } else {
       console.log("Unabled to fetch information");
     }
@@ -65,18 +62,18 @@ export default function AddLocationPage() {
         <label htmlFor="x">Longitude:</label>
         <input
           className="bg-blue-200"
-          type="number"
+          type="text"
           id="x"
           step="any"
-          {...register("x")}
+          {...register("latitude")}
         />
         <label htmlFor="y">Latitude:</label>
         <input
           className="bg-blue-200"
-          type="number"
+          type="text"
           id="y"
           step="any"
-          {...register("y")}
+          {...register("longitude")}
         />
         <button onClick={getUsersLocation}>Use your location</button>
         {utils.map((u, i) => {
