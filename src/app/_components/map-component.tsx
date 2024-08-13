@@ -21,7 +21,7 @@ export default function MapComponent() {
     { x: 34.8054, y: -74.5241, id: "2", utils: ["Bathroom", "Campfire"] },
     { x: 20.8054, y: -70.0241, id: "3", utils: ["Bathroom", "Campfire"] },
     { x: 20.8054, y: -74.0241, id: "4", utils: ["Bathroom", "Campfire"] },
-    { x: 59.33258, y: 18.0649, id: "Stockholm", utils: ["Lake", ["Parking"]] },
+    { x: 59.33258, y: 18.0649, id: "Stockholm", utils: ["Lake", "Parking"] },
     { x: 59.3372073, y: 18.0116906, id: "Salt", utils: ["Forest"] },
   ];
   const defaultCoords = userCoords
