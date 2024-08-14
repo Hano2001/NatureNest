@@ -10,4 +10,5 @@ export type PostLocation = {
   latitude: string;
   longitude: string;
   description: string | null;
+  utils: string[];
 };

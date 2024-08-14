@@ -2,7 +2,7 @@
 
 import { eq } from "drizzle-orm";
 import { db } from "./drizzle";
-import { locations } from "./drizzle/schema";
+import { locations, locations_utils } from "./drizzle/schema";
 
 export const getAllLocations = async () => {
   try {
@@ -23,17 +23,23 @@ export const getSingleLocation = async (id: string) => {
     throw new Error("Failed to get Location");
   }
 };
-
 type newLocation = typeof locations.$inferInsert;
 export const addNewLocation = async (data: newLocation) => {
   try {
-    await db.insert(locations).values({
-      name: data.name,
-      latitude: data.latitude,
-      longitude: data.longitude,
-      description: data.description,
-    });
+    const newData = await db.insert(locations).values(data).returning();
+    const locationId = newData[0].id;
+    return locationId;
   } catch (error) {
     throw new Error("Unable to add location");
+  }
+};
+export const addUtils = async (util: string, locationId: string) => {
+  try {
+    console.log({ util });
+    await db
+      .insert(locations_utils)
+      .values({ type: util, location_id: locationId });
+  } catch (error) {
+    throw new Error("Failed to add utilities");
   }
 };
