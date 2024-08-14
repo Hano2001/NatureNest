@@ -13,12 +13,20 @@ export const getAllLocations = async () => {
   }
 };
 
-export const getSingleLocation = async (id: string) => {
+export const getSingleLocation = async (locationId: string) => {
   try {
-    const res = await db.query.locations.findFirst({
-      where: eq(locations.id, id),
+    const location = await db.query.locations.findFirst({
+      where: eq(locations.id, locationId),
     });
-    return res;
+    const utils = await db
+      .select({ type: locations_utils.type })
+      .from(locations_utils)
+      .where(eq(locations_utils.location_id, locationId));
+    // const utils = await db.query.locations_utils.findMany({
+    //   where: eq(locations_utils.location_id, locationId),
+    // });
+
+    return { location, utils };
   } catch (error) {
     throw new Error("Failed to get Location");
   }

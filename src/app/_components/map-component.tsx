@@ -66,14 +66,17 @@ export default function MapComponent() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        {locations.map((l, i) => {
+        {locations.map((location, i) => {
           return (
             <Marker
               key={i}
-              position={[parseFloat(l.longitude), parseFloat(l.latitude)]}
+              position={[
+                parseFloat(location.longitude),
+                parseFloat(location.latitude),
+              ]}
             >
               <Popup>
-                <LocationCard location={l} />
+                <LocationCard locationId={location.id} />
               </Popup>
             </Marker>
           );
