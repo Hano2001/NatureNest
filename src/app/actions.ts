@@ -1,6 +1,6 @@
 "use server";
 
-import { addNewLocation, getAllLocations } from "@/queries";
+import { addNewLocation, getAllLocations, getSingleLocation } from "@/queries";
 import { PostLocation } from "./types";
 
 export const getAllLocationsAction = async () => {
@@ -13,5 +13,7 @@ export const postLocationAction = async (data: PostLocation) => {
 };
 
 export const getSingleLocationAction = async (id: string) => {
-  return { id };
+  const result = await getSingleLocation(id);
+  console.log(result);
+  return result;
 };

@@ -3,17 +3,22 @@ import { Location } from "../types";
 import { getSingleLocationAction } from "../actions";
 
 export default function LocationCard({ location }: { location: Location }) {
-  const [locationInfo, setLocationInfo] = useState({});
+  const [locationInfo, setLocationInfo] = useState<Location | null>(null);
   useEffect(() => {
-    getSingleLocationAction(location.id).then((res) => setLocationInfo(res));
+    getSingleLocationAction(location.id).then((res) => {
+      if (res) {
+        setLocationInfo(res);
+      }
+    });
   }, []);
 
   return (
     <div className="h-96 w-64">
-      {location.id ? (
+      {locationInfo ? (
         <div>
-          <h1>{location.id}</h1>
-          <p>{location.description}</p>
+          <h1>{locationInfo.id}</h1>
+          <h2>{locationInfo.name}</h2>
+          <p>{locationInfo.description}</p>
         </div>
       ) : (
         <p>Loading location...</p>

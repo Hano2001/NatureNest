@@ -1,14 +1,26 @@
 "use server";
 
+import { eq } from "drizzle-orm";
 import { db } from "./drizzle";
 import { locations } from "./drizzle/schema";
 
 export const getAllLocations = async () => {
   try {
-    const res = db.query.locations.findMany();
+    const res = await db.query.locations.findMany();
     return res;
   } catch (error) {
     throw new Error("Error when fetching locations");
+  }
+};
+
+export const getSingleLocation = async (id: string) => {
+  try {
+    const res = await db.query.locations.findFirst({
+      where: eq(locations.id, id),
+    });
+    return res;
+  } catch (error) {
+    throw new Error("Failed to get Location");
   }
 };
 
