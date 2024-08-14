@@ -37,6 +37,7 @@ export default function AddLocationForm({ coords }: { coords: string[] }) {
         <label htmlFor="x">Name:</label>
         <input
           className="bg-blue-200"
+          required
           type="text"
           id="name"
           {...register("name")}
@@ -44,6 +45,7 @@ export default function AddLocationForm({ coords }: { coords: string[] }) {
         <label htmlFor="lat">Longitude:</label>
         <input
           defaultValue={coords[0]}
+          required
           className="bg-blue-200"
           type="text"
           id="lat"
@@ -53,6 +55,7 @@ export default function AddLocationForm({ coords }: { coords: string[] }) {
         <label htmlFor="long">Latitude:</label>
         <input
           defaultValue={coords[1]}
+          required
           className="bg-blue-200"
           type="text"
           id="long"
