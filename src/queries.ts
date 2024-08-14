@@ -48,3 +48,12 @@ export const addUtils = async (util: string, locationId: string) => {
     throw new Error("Failed to add utilities");
   }
 };
+
+export const deleteLocation = async (locationId: string) => {
+  try {
+    await db.delete(locations).where(eq(locations.id, locationId));
+    return locationId;
+  } catch (error) {
+    throw Error("Failed to delete location");
+  }
+};

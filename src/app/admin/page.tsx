@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { getAllLocationsAction } from "../actions";
+import { deleteLocationAction, getAllLocationsAction } from "../actions";
 import { Location } from "../types";
 
 export default function AdminPage() {
@@ -17,6 +17,17 @@ export default function AdminPage() {
     return <p>Loading locations...</p>;
   }
 
+  const deleteLocation = (id: string) => {
+    const result = deleteLocationAction(id);
+    if (result !== undefined) {
+      const filteredLocations = locations.filter(
+        (location) => location.id !== id,
+      );
+      setLocations([...filteredLocations]);
+      console.log("Location", result, "Deleted!");
+    }
+  };
+
   return (
     <>
       <ul>
@@ -24,7 +35,7 @@ export default function AdminPage() {
           return (
             <div key={i}>
               <strong>{location.name}</strong>
-              <button onClick={() => console.log("Deleting", location.id)}>
+              <button onClick={() => deleteLocation(location.id)}>
                 Delete Campsite
               </button>
             </div>

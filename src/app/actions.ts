@@ -3,10 +3,12 @@
 import {
   addNewLocation,
   addUtils,
+  deleteLocation,
   getAllLocations,
   getSingleLocation,
 } from "@/queries";
 import { PostLocation } from "./types";
+import { revalidatePath } from "next/cache";
 
 export const getAllLocationsAction = async () => {
   const result = await getAllLocations();
@@ -36,5 +38,10 @@ export const postLocationAction = async (data: PostLocation) => {
 
 export const getSingleLocationAction = async (id: string) => {
   const result = await getSingleLocation(id);
+  return result;
+};
+
+export const deleteLocationAction = async (id: string) => {
+  const result = await deleteLocation(id);
   return result;
 };
