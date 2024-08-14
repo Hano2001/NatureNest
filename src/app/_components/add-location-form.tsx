@@ -44,6 +44,12 @@ export default function AddLocationForm({
 
   return (
     <div className="w-1/3 h-1/2 absolute top-52 left-52 z-[450] bg-white rounded-md">
+      <button
+        className="text-white bg-red-500 w-16 rounded-md"
+        onClick={() => setShowForm(false)}
+      >
+        X
+      </button>
       <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="x">Name:</label>
         <input

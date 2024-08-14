@@ -23,6 +23,7 @@ export default function MapComponent() {
   useEffect(() => {
     getAllLocationsAction().then((res) => {
       setLocations(res);
+      setSelectCoords(["", ""]);
     });
   }, [showForm]);
   const { coords, isGeolocationAvailable, isGeolocationEnabled } =
