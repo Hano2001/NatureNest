@@ -24,7 +24,7 @@ export default function MapComponent() {
     getAllLocationsAction().then((res) => {
       setLocations(res);
     });
-  }, []);
+  }, [showForm]);
   const { coords, isGeolocationAvailable, isGeolocationEnabled } =
     useGeolocated();
   useGeolocated({
@@ -33,6 +33,7 @@ export default function MapComponent() {
     },
     userDecisionTimeout: 5000,
   });
+
   function GetCoords() {
     useMapEvents({
       click(e) {
@@ -53,7 +54,9 @@ export default function MapComponent() {
       <button onClick={() => setShowForm((showForm) => !showForm)}>
         Add location
       </button>
-      {showForm ? <AddLocationForm coords={selectCoords} /> : null}
+      {showForm ? (
+        <AddLocationForm coords={selectCoords} setShowForm={setShowForm} />
+      ) : null}
       <MapContainer
         center={[59.33258, 18.0649]}
         zoom={14}

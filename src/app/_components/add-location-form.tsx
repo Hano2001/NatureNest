@@ -2,9 +2,16 @@
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { postLocationAction } from "../actions";
+import { Dispatch, SetStateAction } from "react";
 
-export default function AddLocationForm({ coords }: { coords: string[] }) {
-  const { handleSubmit, register } = useForm<{
+export default function AddLocationForm({
+  coords,
+  setShowForm,
+}: {
+  coords: string[];
+  setShowForm: Dispatch<SetStateAction<Boolean>>;
+}) {
+  const { handleSubmit, register, reset } = useForm<{
     name: string;
     latitude: string;
     longitude: string;
@@ -19,8 +26,11 @@ export default function AddLocationForm({ coords }: { coords: string[] }) {
     description: string;
     utils: string[];
   }> = (data) => {
-    console.log({ data });
-    postLocationAction(data);
+    const locationId = postLocationAction(data).then((res) => res);
+    if (typeof locationId !== "undefined") {
+      reset();
+      setShowForm(false);
+    }
   };
 
   const utils = [

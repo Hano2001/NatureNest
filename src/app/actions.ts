@@ -22,15 +22,19 @@ export const postLocationAction = async (data: PostLocation) => {
   };
   const utils = data.utils;
   const locationId = await addNewLocation(location);
-  if (utils) {
-    utils.forEach((util) => {
-      addUtils(util, locationId);
-    });
+  if (locationId) {
+    if (utils) {
+      utils.forEach((util) => {
+        addUtils(util, locationId);
+      });
+      return locationId;
+    }
+  } else {
+    return false;
   }
 };
 
 export const getSingleLocationAction = async (id: string) => {
   const result = await getSingleLocation(id);
-  console.log(result);
   return result;
 };

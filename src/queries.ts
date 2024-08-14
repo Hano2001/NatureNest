@@ -22,9 +22,6 @@ export const getSingleLocation = async (locationId: string) => {
       .select({ type: locations_utils.type })
       .from(locations_utils)
       .where(eq(locations_utils.location_id, locationId));
-    // const utils = await db.query.locations_utils.findMany({
-    //   where: eq(locations_utils.location_id, locationId),
-    // });
 
     return { location, utils };
   } catch (error) {
@@ -44,7 +41,6 @@ export const addNewLocation = async (data: newLocation) => {
 };
 export const addUtils = async (util: string, locationId: string) => {
   try {
-    console.log({ util });
     await db
       .insert(locations_utils)
       .values({ type: util, location_id: locationId });
