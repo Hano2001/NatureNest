@@ -19,6 +19,7 @@ export default function AddLocationForm({ coords }: { coords: string[] }) {
     description: string;
     utils: string[];
   }> = (data) => {
+    console.log({ data });
     postLocationAction(data);
   };
 
@@ -62,7 +63,11 @@ export default function AddLocationForm({ coords }: { coords: string[] }) {
           step="any"
           {...register("longitude")}
         />
-        {/* <button onClick={getUsersLocation}>Use your location</button> */}
+        <textarea
+          id="description"
+          className="w-3/4 h-[50px]"
+          {...register("description")}
+        ></textarea>
         {utils.map((u, i) => {
           return (
             <div key={i}>

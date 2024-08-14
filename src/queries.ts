@@ -34,6 +34,7 @@ export const getSingleLocation = async (locationId: string) => {
 type newLocation = typeof locations.$inferInsert;
 export const addNewLocation = async (data: newLocation) => {
   try {
+    console.log(data);
     const newData = await db.insert(locations).values(data).returning();
     const locationId = newData[0].id;
     return locationId;
