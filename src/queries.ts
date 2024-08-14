@@ -25,8 +25,3 @@ export const addNewLocation = async (data: newLocation) => {
     throw new Error("Unable to add location");
   }
 };
-
-// name: text("name").notNull(),
-//   latitude: numeric("latitude").notNull(),
-//   longitude: numeric("longitude").notNull(),
-//   description: text("description"),

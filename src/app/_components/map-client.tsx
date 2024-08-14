@@ -1,5 +1,4 @@
 "use client";
-import dynamic from "next/dynamic";
 import MapComponent from "./map-component";
 
 export default function MapClient() {

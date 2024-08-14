@@ -14,9 +14,12 @@ import { useEffect, useState } from "react";
 import LocationCard from "./location-card";
 import { getAllLocationsAction } from "../actions";
 import { Location } from "../types";
+import AddLocationForm from "./add-location-form";
 
 export default function MapComponent() {
   const [locations, setLocations] = useState<Location[]>([]);
+  const [showForm, setShowForm] = useState<Boolean>(false);
+  const [selectCoords, setSelectCoords] = useState<string[]>(["", ""]);
   useEffect(() => {
     getAllLocationsAction().then((res) => {
       setLocations(res);
@@ -33,7 +36,12 @@ export default function MapComponent() {
   function GetCoords() {
     useMapEvents({
       click(e) {
-        console.log(e);
+        const { lat, lng } = e.latlng;
+        const locationCoords = [lng.toString(), lat.toString()];
+        if (confirm("Do you want to add a campsite to this location?")) {
+          setSelectCoords(locationCoords);
+          setShowForm(true);
+        }
       },
     });
     return null;
@@ -41,8 +49,11 @@ export default function MapComponent() {
   locations.forEach((l) => {});
 
   return (
-    <div className="h-full">
-      <button onClick={() => console.log(coords)}>Coords</button>
+    <div className="h-full w-full">
+      <button onClick={() => setShowForm((showForm) => !showForm)}>
+        Add location
+      </button>
+      {showForm ? <AddLocationForm coords={selectCoords} /> : null}
       <MapContainer
         center={[59.33258, 18.0649]}
         zoom={14}

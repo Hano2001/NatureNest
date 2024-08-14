@@ -1,20 +1,10 @@
 "use client";
 
-import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { postLocationAction } from "../actions";
-import { useGeolocated } from "react-geolocated";
 
-export default function AddLocationPage() {
-  const { coords, isGeolocationAvailable, isGeolocationEnabled } =
-    useGeolocated();
-  useGeolocated({
-    positionOptions: {
-      enableHighAccuracy: true,
-    },
-    userDecisionTimeout: 5000,
-  });
-
-  const { handleSubmit, register, setValue } = useForm<{
+export default function AddLocationForm({ coords }: { coords: string[] }) {
+  const { handleSubmit, register } = useForm<{
     name: string;
     latitude: string;
     longitude: string;
@@ -41,16 +31,8 @@ export default function AddLocationPage() {
     "Campfire",
   ];
 
-  const getUsersLocation = () => {
-    if (coords) {
-      setValue("latitude", (coords?.longitude).toString());
-      setValue("longitude", (coords?.latitude).toString());
-    } else {
-      console.log("Unabled to fetch information");
-    }
-  };
   return (
-    <>
+    <div className="w-1/3 h-1/2 absolute top-52 left-52 z-[450] bg-white rounded-md">
       <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="x">Name:</label>
         <input
@@ -59,23 +41,25 @@ export default function AddLocationPage() {
           id="name"
           {...register("name")}
         />
-        <label htmlFor="x">Longitude:</label>
+        <label htmlFor="lat">Longitude:</label>
         <input
+          defaultValue={coords[0]}
           className="bg-blue-200"
           type="text"
-          id="x"
+          id="lat"
           step="any"
           {...register("latitude")}
         />
-        <label htmlFor="y">Latitude:</label>
+        <label htmlFor="long">Latitude:</label>
         <input
+          defaultValue={coords[1]}
           className="bg-blue-200"
           type="text"
-          id="y"
+          id="long"
           step="any"
           {...register("longitude")}
         />
-        <button onClick={getUsersLocation}>Use your location</button>
+        {/* <button onClick={getUsersLocation}>Use your location</button> */}
         {utils.map((u, i) => {
           return (
             <div key={i}>
@@ -92,6 +76,6 @@ export default function AddLocationPage() {
 
         <button type="submit">Add Location</button>
       </form>
-    </>
+    </div>
   );
 }
