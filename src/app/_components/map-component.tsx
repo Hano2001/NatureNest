@@ -17,15 +17,12 @@ import { Location } from "../types";
 import AddLocationForm from "./add-location-form";
 
 export default function MapComponent() {
-  const [locations, setLocations] = useState<Location[]>([]);
+  const [locations, setLocations] = useState<Location[] | null>(null);
   const [showForm, setShowForm] = useState<Boolean>(false);
   const [selectCoords, setSelectCoords] = useState<string[]>(["", ""]);
-  useEffect(() => {
-    getAllLocationsAction().then((res) => {
-      setLocations(res);
-      setSelectCoords(["", ""]);
-    });
-  }, [showForm]);
+  // useEffect(() => {
+
+  // }, [showForm]);
   const { coords, isGeolocationAvailable, isGeolocationEnabled } =
     useGeolocated();
   useGeolocated({
@@ -34,6 +31,22 @@ export default function MapComponent() {
     },
     userDecisionTimeout: 5000,
   });
+
+  function fetchLocations() {
+    getAllLocationsAction().then((res) => {
+      setLocations(res);
+      setSelectCoords(["", ""]);
+    });
+  }
+
+  if (!locations) {
+    fetchLocations();
+    return (
+      <>
+        <p>Fetching locations...</p>
+      </>
+    );
+  }
 
   function GetCoords() {
     useMapEvents({
@@ -48,6 +61,7 @@ export default function MapComponent() {
     });
     return null;
   }
+
   locations.forEach((l) => {});
 
   return (
@@ -56,7 +70,11 @@ export default function MapComponent() {
         Add location
       </button>
       {showForm ? (
-        <AddLocationForm coords={selectCoords} setShowForm={setShowForm} />
+        <AddLocationForm
+          coords={selectCoords}
+          fetchLocations={fetchLocations}
+          setShowForm={setShowForm}
+        />
       ) : null}
       <MapContainer
         center={[59.33258, 18.0649]}

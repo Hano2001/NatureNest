@@ -7,9 +7,11 @@ import { Dispatch, SetStateAction } from "react";
 export default function AddLocationForm({
   coords,
   setShowForm,
+  fetchLocations,
 }: {
   coords: string[];
   setShowForm: Dispatch<SetStateAction<Boolean>>;
+  fetchLocations: () => void;
 }) {
   const { handleSubmit, register, reset } = useForm<{
     name: string;
@@ -30,6 +32,7 @@ export default function AddLocationForm({
     if (typeof locationId !== "undefined") {
       reset();
       setShowForm(false);
+      fetchLocations();
     }
   };
 
