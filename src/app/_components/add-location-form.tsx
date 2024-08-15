@@ -102,7 +102,7 @@ export default function AddLocationForm({
           ></textarea>
         </div>
         <h3 className="border-black border-b-2">Available Utilites</h3>
-        <div className="grid grid-cols-2 w-full gap-2 justify-between h-1/4">
+        <div className="grid grid-cols-2 w-full gap-2 justify-between h-full md:h-1/4">
           {utils.map((util, i) => {
             return (
               <div

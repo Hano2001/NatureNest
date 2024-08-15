@@ -68,6 +68,10 @@ export default function MapComponent() {
 
   return (
     <div className="h-full w-full overflow-auto">
+      <p className="p-3 bg-white/40 w-1/2 md:w-1/5 z-[1500] top-3 right-3 absolute">
+        Click on the map where you want to add the campsite you want people to
+        know about!
+      </p>
       {showForm ? (
         <AddLocationForm
           coords={selectCoords}
@@ -77,7 +81,7 @@ export default function MapComponent() {
       ) : null}
       {!showForm ? (
         <button
-          className="bg-green-500 text-white  text-l md:text-2xl p-3 z-[1500] bottom-3 hover:bg-green-400 right-3 absolute"
+          className="bg-green-500 text-white text-l w-full bottom-0 md:w-96 md:text-2xl p-3 z-[1500] md:bottom-3 hover:bg-green-400 md:right-3 absolute"
           onClick={() => {
             setShowForm((showForm) => !showForm);
             coords
