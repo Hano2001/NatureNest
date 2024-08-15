@@ -2,6 +2,7 @@
 
 import { Dispatch, SetStateAction } from "react";
 import { UploadButton } from "../../utils/uploadthing";
+import "@uploadthing/react/styles.css";
 
 export default function ImageUploader({
   setImageUrl,
