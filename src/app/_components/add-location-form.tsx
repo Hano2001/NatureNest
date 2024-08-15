@@ -53,7 +53,7 @@ export default function AddLocationForm({
   ];
 
   return (
-    <div className="w-full md:w-1/4  h-full md:h-[800px] absolute md:top-32 md:left-48 z-[1500] bg-white rounded-md p-3">
+    <div className="w-full md:w-1/4  h-full md:h-[800px] absolute md:top-12 md:right-12 z-[1500] bg-white rounded-md p-3">
       <button
         className="text-white bg-red-500 w-16 rounded-md p-1"
         onClick={() => setShowForm(false)}

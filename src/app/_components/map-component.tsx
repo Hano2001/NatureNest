@@ -67,7 +67,7 @@ export default function MapComponent() {
   locations.forEach((l) => {});
 
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full overflow-auto">
       {showForm ? (
         <AddLocationForm
           coords={selectCoords}
@@ -88,6 +88,7 @@ export default function MapComponent() {
         zoom={14}
         scrollWheelZoom={false}
         style={{ height: "100%", width: "100%" }}
+        className="overflow-auto"
       >
         <GetCoords />
 
