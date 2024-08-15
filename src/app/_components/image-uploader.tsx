@@ -10,7 +10,7 @@ export default function ImageUploader({
   setImageUrl: Dispatch<SetStateAction<string>>;
 }) {
   return (
-    <main className="flex h-32 flex-col items-center justify-between">
+    <main className="flex h-14 flex-col items-center justify-between">
       <UploadButton
         endpoint="imageUploader"
         onClientUploadComplete={(res) => {

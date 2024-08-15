@@ -15,7 +15,12 @@ export default function AdminPage() {
     });
   }, []);
   if (!locations) {
-    return <p>Loading locations...</p>;
+    return (
+      <>
+        <LoadingIcon />
+        <p>Loading locations...</p>
+      </>
+    );
   }
 
   const deleteLocation = (id: string) => {
@@ -43,7 +48,6 @@ export default function AdminPage() {
           );
         })}
       </ul>
-      <LoadingIcon />
     </>
   );
 }

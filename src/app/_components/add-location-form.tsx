@@ -65,7 +65,7 @@ export default function AddLocationForm({
         className="flex flex-col items-between"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="flex flex-col items-center p-2 gap-2">
+        <div className="flex flex-col items-center p-2 gap-3">
           <label htmlFor="x">Name:</label>
           <input
             className="w-full md:w-1/2 border border-black border-2"

@@ -77,10 +77,18 @@ export default function MapComponent() {
       ) : null}
       {!showForm ? (
         <button
-          className="bg-green-500 text-white  text-l md:text-2xl p-2 z-[1500] bottom-3 hover:bg-green-400 right-3 absolute"
-          onClick={() => setShowForm((showForm) => !showForm)}
+          className="bg-green-500 text-white  text-l md:text-2xl p-3 z-[1500] bottom-3 hover:bg-green-400 right-3 absolute"
+          onClick={() => {
+            setShowForm((showForm) => !showForm);
+            coords
+              ? setSelectCoords([
+                  coords.longitude.toString(),
+                  coords.latitude.toString(),
+                ])
+              : null;
+          }}
         >
-          Add new campsite
+          Add new campsite to your Location
         </button>
       ) : null}
       <MapContainer

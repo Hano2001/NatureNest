@@ -11,7 +11,9 @@ import LocalParkingIcon from "@mui/icons-material/LocalParking";
 
 export default function UtilityIcon({ type }: { type: string }) {
   switch (type) {
-    case "Ocean" || "Ocean":
+    case "Ocean":
+      return <PoolIcon />;
+    case "Lake":
       return <PoolIcon />;
     case "Public Transport":
       return <DirectionsBusIcon />;
@@ -33,14 +35,3 @@ export default function UtilityIcon({ type }: { type: string }) {
       return <BeachAccessIcon />;
   }
 }
-
-// "",
-//     "",
-//     ,
-//     ≈,
-//     "",
-//
-//     "",
-//     "",
-//     "",
-//     "Beach",
