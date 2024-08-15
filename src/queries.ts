@@ -52,6 +52,9 @@ export const addUtils = async (util: string, locationId: string) => {
 export const deleteLocation = async (locationId: string) => {
   try {
     await db.delete(locations).where(eq(locations.id, locationId));
+    await db
+      .delete(locations_utils)
+      .where(eq(locations_utils.location_id, locationId));
     return locationId;
   } catch (error) {
     throw Error("Failed to delete location");
