@@ -66,15 +66,20 @@ export default function MapComponent() {
 
   return (
     <div className="h-full w-full">
-      <button onClick={() => setShowForm((showForm) => !showForm)}>
-        Add location
-      </button>
       {showForm ? (
         <AddLocationForm
           coords={selectCoords}
           fetchLocations={fetchLocations}
           setShowForm={setShowForm}
         />
+      ) : null}
+      {!showForm ? (
+        <button
+          className="bg-green-500 text-white  text-l md:text-2xl p-2 z-[1500] bottom-3 hover:bg-green-400 right-3 absolute"
+          onClick={() => setShowForm((showForm) => !showForm)}
+        >
+          Add new campsite
+        </button>
       ) : null}
       <MapContainer
         center={[59.33258, 18.0649]}
