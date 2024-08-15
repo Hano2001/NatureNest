@@ -4,6 +4,7 @@ export type Location = {
   latitude: string;
   longitude: string;
   description: string | null;
+  imageUrl: string | null;
 };
 export type PostLocation = {
   name: string;

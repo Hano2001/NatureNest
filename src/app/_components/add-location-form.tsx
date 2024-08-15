@@ -2,7 +2,8 @@
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { postLocationAction } from "../actions";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
+import ImageUploader from "./image-uploader";
 
 export default function AddLocationForm({
   coords,
@@ -13,6 +14,7 @@ export default function AddLocationForm({
   setShowForm: Dispatch<SetStateAction<Boolean>>;
   fetchLocations: () => void;
 }) {
+  const [imageUrl, setImageUrl] = useState<string>("");
   const { handleSubmit, register, reset } = useForm<{
     name: string;
     latitude: string;
@@ -28,7 +30,7 @@ export default function AddLocationForm({
     description: string;
     utils: string[];
   }> = (data) => {
-    const locationId = postLocationAction(data).then((res) => res);
+    const locationId = postLocationAction(data, imageUrl).then((res) => res);
     if (typeof locationId !== "undefined") {
       reset();
       setShowForm(false);
@@ -53,6 +55,7 @@ export default function AddLocationForm({
       >
         X
       </button>
+      <ImageUploader setImageUrl={setImageUrl} />
       <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="x">Name:</label>
         <input
