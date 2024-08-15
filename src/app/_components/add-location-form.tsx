@@ -53,7 +53,7 @@ export default function AddLocationForm({
   ];
 
   return (
-    <div className="w-full md:w-1/4  h-full md:h-[740px] absolute md:top-52 md:left-52 z-[1500] bg-white rounded-md p-3">
+    <div className="w-full md:w-1/4  h-full md:h-[800px] absolute md:top-32 md:left-48 z-[1500] bg-white rounded-md p-3">
       <button
         className="text-white bg-red-500 w-16 rounded-md p-1"
         onClick={() => setShowForm(false)}
@@ -122,7 +122,7 @@ export default function AddLocationForm({
             );
           })}
         </div>
-        <div className="flex justify-center md:justify-end w-full p-2 md:p-0">
+        <div className="flex justify-center items-center md:justify-end w-full p-4">
           <button className="p-3 text-white bg-green-600" type="submit">
             Add Location
           </button>
