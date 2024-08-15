@@ -15,12 +15,16 @@ export const getAllLocationsAction = async () => {
   return result;
 };
 
-export const postLocationAction = async (data: PostLocation) => {
+export const postLocationAction = async (
+  data: PostLocation,
+  imageUrl: string,
+) => {
   const location = {
     name: data.name,
     latitude: data.latitude,
     longitude: data.longitude,
     description: data.description,
+    imageUrl: imageUrl,
   };
   const utils = data.utils;
   const locationId = await addNewLocation(location);

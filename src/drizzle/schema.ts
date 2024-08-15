@@ -1,5 +1,5 @@
 import { relations } from "drizzle-orm";
-import { text, pgTable, uuid } from "drizzle-orm/pg-core";
+import { text, pgTable, uuid, serial } from "drizzle-orm/pg-core";
 
 export const locations = pgTable("locations", {
   id: uuid("id").defaultRandom().primaryKey().notNull(),
@@ -7,9 +7,11 @@ export const locations = pgTable("locations", {
   latitude: text("latitude").notNull(),
   longitude: text("longitude").notNull(),
   description: text("description"),
+  imageUrl: text("image_url"),
 });
 
 export const locations_utils = pgTable("locations_utils", {
+  id: serial("id").primaryKey(),
   type: text("type").notNull(),
   location_id: uuid("location_id"),
 });

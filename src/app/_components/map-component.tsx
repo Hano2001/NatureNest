@@ -32,6 +32,8 @@ export default function MapComponent() {
 
   function fetchLocations() {
     getAllLocationsAction().then((res) => {
+      if (res) {
+      }
       setLocations(res);
       setSelectCoords(["", ""]);
     });

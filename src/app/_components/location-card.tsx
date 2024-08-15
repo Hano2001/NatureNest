@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Location } from "../types";
 import { getSingleLocationAction } from "../actions";
+import Image from "next/image";
 
 export default function LocationCard({ locationId }: { locationId: string }) {
   const [locationInfo, setLocationInfo] = useState<Location | null>(null);
@@ -20,6 +21,12 @@ export default function LocationCard({ locationId }: { locationId: string }) {
     <div className="h-96 w-64">
       {locationInfo ? (
         <div>
+          <Image
+            width={100}
+            height={100}
+            src={locationInfo.imageUrl ? locationInfo.imageUrl : ""}
+            alt="No image to show"
+          ></Image>
           <h2>{locationInfo.name}</h2>
           <p>{locationInfo.description}</p>
           <ul>

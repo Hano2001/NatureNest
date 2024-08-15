@@ -1,8 +1,13 @@
 "use client";
 
+import { Dispatch, SetStateAction } from "react";
 import { UploadButton } from "../../utils/uploadthing";
 
-export default function ImageUploader() {
+export default function ImageUploader({
+  setImageUrl,
+}: {
+  setImageUrl: Dispatch<SetStateAction<string>>;
+}) {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <UploadButton
@@ -10,6 +15,7 @@ export default function ImageUploader() {
         onClientUploadComplete={(res) => {
           // Do something with the response
           console.log("Files: ", res);
+          setImageUrl(res[0].url);
           alert("Upload Completed");
         }}
         onUploadError={(error: Error) => {
