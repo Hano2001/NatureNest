@@ -3,6 +3,7 @@ import { Location } from "../types";
 import { getSingleLocationAction } from "../actions";
 import Image from "next/image";
 import UtilityIcon from "./utility-icon";
+import LoadingIcon from "./loading-icon";
 
 export default function LocationCard({ locationId }: { locationId: string }) {
   const [locationInfo, setLocationInfo] = useState<Location | null>(null);
@@ -45,7 +46,10 @@ export default function LocationCard({ locationId }: { locationId: string }) {
           </ul>
         </div>
       ) : (
-        <p>Loading location...</p>
+        <div className="flex flex-col items-center justify-center h-full">
+          <LoadingIcon />
+          <p>Loading location...</p>
+        </div>
       )}
     </div>
   );

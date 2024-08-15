@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { deleteLocationAction, getAllLocationsAction } from "../actions";
 import { Location } from "../types";
+import LoadingIcon from "../_components/loading-icon";
 
 export default function AdminPage() {
   const [locations, setLocations] = useState<Location[] | null>(null);
@@ -42,6 +43,7 @@ export default function AdminPage() {
           );
         })}
       </ul>
+      <LoadingIcon />
     </>
   );
 }

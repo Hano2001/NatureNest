@@ -15,6 +15,7 @@ import LocationCard from "./location-card";
 import { getAllLocationsAction } from "../actions";
 import { Location } from "../types";
 import AddLocationForm from "./add-location-form";
+import LoadingIcon from "./loading-icon";
 
 export default function MapComponent() {
   const [locations, setLocations] = useState<Location[] | null>(null);
@@ -42,9 +43,10 @@ export default function MapComponent() {
   if (!locations) {
     fetchLocations();
     return (
-      <>
-        <p>Fetching locations...</p>
-      </>
+      <div className="h-full flex flex-col justify-center items-center">
+        <LoadingIcon />
+        <p>Loading locations...</p>
+      </div>
     );
   }
 
