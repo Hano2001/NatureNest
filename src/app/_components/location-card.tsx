@@ -6,28 +6,31 @@ import Image from "next/image";
 export default function LocationCard({ locationId }: { locationId: string }) {
   const [locationInfo, setLocationInfo] = useState<Location | null>(null);
   const [utilInfo, setUtilInfo] = useState<{ type: string }[]>([]);
-  useEffect(() => {
+
+  function getLocationInfo() {
     getSingleLocationAction(locationId).then((res) => {
       if (res.location) {
         setLocationInfo(res.location);
         setUtilInfo(res.utils);
-
-        console.log(res);
       }
     });
-  }, []);
+  }
+
+  if (!locationInfo) {
+    getLocationInfo();
+  }
 
   return (
-    <div className="h-96 w-64">
+    <div className="flex h-[400px] w-[350px]">
       {locationInfo ? (
-        <div>
+        <div className="flex flex-col justify-center">
           <Image
-            width={100}
-            height={100}
+            width={150}
+            height={150}
             src={locationInfo.imageUrl ? locationInfo.imageUrl : ""}
             alt="No image to show"
           ></Image>
-          <h2>{locationInfo.name}</h2>
+          <strong>{locationInfo.name}</strong>
           <p>{locationInfo.description}</p>
           <ul>
             {utilInfo.map((util, i) => {
