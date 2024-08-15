@@ -20,9 +20,7 @@ export default function MapComponent() {
   const [locations, setLocations] = useState<Location[] | null>(null);
   const [showForm, setShowForm] = useState<Boolean>(false);
   const [selectCoords, setSelectCoords] = useState<string[]>(["", ""]);
-  // useEffect(() => {
 
-  // }, [showForm]);
   const { coords, isGeolocationAvailable, isGeolocationEnabled } =
     useGeolocated();
   useGeolocated({

@@ -3,6 +3,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { postLocationAction } from "../actions";
 import { Dispatch, SetStateAction } from "react";
+import ImageUploader from "./image-uploader";
 
 export default function AddLocationForm({
   coords,
@@ -53,6 +54,7 @@ export default function AddLocationForm({
       >
         X
       </button>
+      <ImageUploader />
       <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="x">Name:</label>
         <input
