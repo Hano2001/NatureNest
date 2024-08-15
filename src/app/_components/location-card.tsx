@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Location } from "../types";
 import { getSingleLocationAction } from "../actions";
 import Image from "next/image";
+import UtilityIcon from "./utility-icon";
 
 export default function LocationCard({ locationId }: { locationId: string }) {
   const [locationInfo, setLocationInfo] = useState<Location | null>(null);
@@ -34,7 +35,12 @@ export default function LocationCard({ locationId }: { locationId: string }) {
           <p>{locationInfo.description}</p>
           <ul>
             {utilInfo.map((util, i) => {
-              return <li key={i}>{util.type}</li>;
+              return (
+                <li key={i}>
+                  <UtilityIcon type={util.type} />
+                  {util.type}
+                </li>
+              );
             })}
           </ul>
         </div>

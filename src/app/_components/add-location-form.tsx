@@ -44,9 +44,11 @@ export default function AddLocationForm({
     "Forest",
     "Lake",
     "Parking",
-    "Campfire",
-    "Campfire",
-    "Campfire",
+    "Ocean",
+    "Lean-to",
+    "Store",
+    "Wheelchair Accessible",
+    "Beach",
     "Campfire",
   ];
 
