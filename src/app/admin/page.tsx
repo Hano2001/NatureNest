@@ -17,7 +17,6 @@ export default function AdminPage() {
   if (!locations) {
     return (
       <>
-        <LoadingIcon />
         <p>Loading locations...</p>
       </>
     );
@@ -35,19 +34,26 @@ export default function AdminPage() {
   };
 
   return (
-    <>
-      <ul>
+    <div className="flex justify-center w-full p-4 gap-3">
+      <ul className="w-full">
         {locations.map((location, i) => {
           return (
-            <div key={i}>
-              <strong>{location.name}</strong>
-              <button onClick={() => deleteLocation(location.id)}>
+            <div className="flex justify-between border-b-4 w-3/4" key={i}>
+              <div className="flex flex-col">
+                <strong>ID: {location.id}</strong>
+                <strong>Name: {location.name}</strong>
+                <strong>Description: {location.description}</strong>
+              </div>
+              <button
+                className="bg-red-500 hover:bg-red-400 text-xl text-white p-4"
+                onClick={() => deleteLocation(location.id)}
+              >
                 Delete Campsite
               </button>
             </div>
           );
         })}
       </ul>
-    </>
+    </div>
   );
 }
