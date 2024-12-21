@@ -13,7 +13,7 @@ import {
 import { useEffect, useState } from "react";
 import LocationCard from "./location-card";
 import { getAllLocationsAction } from "../actions";
-import { Location } from "../types";
+import { DefaultLocation, Location } from "../types";
 import AddLocationForm from "./add-location-form";
 import LoadingIcon from "./loading-icon";
 
@@ -21,6 +21,11 @@ export default function MapComponent() {
   const [locations, setLocations] = useState<Location[] | null>(null);
   const [showForm, setShowForm] = useState<Boolean>(false);
   const [selectCoords, setSelectCoords] = useState<string[]>(["", ""]);
+  const [defaultLocation, setDefaultLocation] = useState<DefaultLocation>({
+    longitude: 59.33258,
+    latitude: 18.0649,
+    zoom: 3,
+  });
 
   const { coords, isGeolocationAvailable, isGeolocationEnabled } =
     useGeolocated();
@@ -79,7 +84,7 @@ export default function MapComponent() {
           setShowForm={setShowForm}
         />
       ) : null}
-      {!showForm ? (
+      {!showForm && isGeolocationEnabled ? (
         <button
           className="bg-green-500 text-white text-l w-full bottom-0 md:w-96 md:text-2xl p-3 z-[1500] md:bottom-3 hover:bg-green-400 md:right-3 absolute"
           onClick={() => {
@@ -96,9 +101,9 @@ export default function MapComponent() {
         </button>
       ) : null}
       <MapContainer
-        center={[59.33258, 18.0649]}
-        zoom={14}
-        scrollWheelZoom={false}
+        center={[defaultLocation.longitude, defaultLocation.latitude]}
+        zoom={defaultLocation.zoom}
+        scrollWheelZoom={true}
         style={{ height: "100%", width: "100%" }}
         className="overflow-auto"
       >
