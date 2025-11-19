@@ -84,9 +84,9 @@ export default function MapComponent() {
           setShowForm={setShowForm}
         />
       ) : null}
-      {!showForm && isGeolocationEnabled ? (
+      {!showForm ? (
         <button
-          className="bg-green-500 text-white text-l w-full bottom-0 md:w-96 md:text-2xl p-3 z-[1500] md:bottom-3 hover:bg-green-400 md:right-3 absolute"
+          className="bg-green-500 text-white text-xl w-full bottom-0 md:w-96 font-extrabold md:text-2xl p-3 z-[1500] md:bottom-3 hover:bg-green-400 md:right-3 absolute"
           onClick={() => {
             setShowForm((showForm) => !showForm);
             coords
@@ -97,7 +97,7 @@ export default function MapComponent() {
               : null;
           }}
         >
-          Add new campsite to your Location
+          +
         </button>
       ) : null}
       <MapContainer
