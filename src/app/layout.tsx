@@ -16,7 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} h-screen relative`}>{children}</body>
+      <body className={`${inter.className} h-dvh relative overflow-hidden`}>
+        {children}
+      </body>
     </html>
   );
 }
