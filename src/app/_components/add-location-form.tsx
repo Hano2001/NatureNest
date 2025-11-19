@@ -53,7 +53,7 @@ export default function AddLocationForm({
   ];
 
   return (
-    <div className=" md:w-1/5 absolute md:right-0 z-[1500] bg-white h-full flex  flex-col justify-between">
+    <div className=" md:w-1/5 absolute md:right-0 z-[1500] bg-white h-full flex  flex-col justify-between overflow-auto">
       <div>
         <button
           className="text-white bg-red-500 hover:bg-red-400 w-16 rounded-md p-1"
