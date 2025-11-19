@@ -72,7 +72,7 @@ export default function MapComponent() {
   locations.forEach((l) => {});
 
   return (
-    <div className="h-full w-full overflow-auto">
+    <div className="h-screen w-full">
       <p className="p-3 bg-white/40 w-1/2 md:w-1/5 z-[1500] top-3 right-3 absolute">
         Click on the map where you want to add the campsite you want people to
         know about!
