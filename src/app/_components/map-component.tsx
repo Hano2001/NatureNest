@@ -48,7 +48,7 @@ export default function MapComponent() {
   if (!locations) {
     fetchLocations();
     return (
-      <div className="h-dvh flex flex-col justify-center items-center">
+      <div className="h-full flex flex-col justify-center items-center">
         <LoadingIcon />
         <p>Loading locations...</p>
       </div>
