@@ -70,8 +70,7 @@ export default function AddLocationForm({
             className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-500 transition hover:bg-gray-100 hover:text-gray-700"
             onClick={() => setShowForm(false)}
           >
-            <span className="sr-only">Close</span>
-            ×
+            <span className="sr-only">Close</span>×
           </button>
         </div>
 
@@ -168,10 +167,7 @@ export default function AddLocationForm({
                       className="flex items-center justify-between gap-3 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm transition hover:border-blue-500"
                       key={i}
                     >
-                      <label
-                        className="text-sm text-gray-700"
-                        htmlFor={util}
-                      >
+                      <label className="text-sm text-gray-700" htmlFor={util}>
                         {util}
                       </label>
                       <input

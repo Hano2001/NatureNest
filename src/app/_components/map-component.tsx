@@ -15,6 +15,7 @@ import LocationCard from "./location-card";
 import { getAllLocationsAction } from "../actions";
 import { DefaultLocation, Location } from "../types";
 import AddLocationForm from "./add-location-form";
+import AddLocationButton from "./add-location-button";
 import LoadingIcon from "./loading-icon";
 
 export default function MapComponent() {
@@ -81,12 +82,13 @@ export default function MapComponent() {
         <AddLocationForm
           coords={selectCoords}
           fetchLocations={fetchLocations}
-          setShowForm={setShowForm}
+          setShowForm={
+            setShowForm as React.Dispatch<React.SetStateAction<boolean>>
+          }
         />
       ) : null}
       {!showForm ? (
-        <button
-          className="bg-green-500 text-white text-xl w-full bottom-0 md:w-96 font-extrabold md:text-2xl p-3 z-[1500] md:bottom-3 hover:bg-green-400 md:right-3 absolute"
+        <AddLocationButton
           onClick={() => {
             setShowForm((showForm) => !showForm);
             coords
@@ -96,9 +98,7 @@ export default function MapComponent() {
                 ])
               : null;
           }}
-        >
-          +
-        </button>
+        />
       ) : null}
       <MapContainer
         center={[defaultLocation.longitude, defaultLocation.latitude]}
